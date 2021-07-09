@@ -1,5 +1,5 @@
 name: 'Blackfire'
-author: 'ExtDN'
+author: 'Bavaan'
 description: 'Uses Blackfire to profile a given url'
 runs:
   using: 'docker'

@@ -14,7 +14,7 @@ In your GitHub repository add the below as
 `.github/workflows/coding-standard.yml`
 
 ```
-name: ExtDN M2 Coding Standard
+name: Bavaan M2 Coding Standard
 on: [push, pull_request]
 
 jobs:
@@ -37,7 +37,7 @@ In your GitHub repository add the below as
 `.github/workflows/integration.yml`
 
 ```
-name: ExtDN M2 Integration Tests
+name: Bavaan M2 Integration Tests
 on: [push, pull_request]
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
         with:
           module_name: Foo_Bar
           composer_name: foo/magento2-foobar
-          ce_version: '2.4.0'
+          ce_version: '2.4.2'
 ```
 
 The following images are provided for use
@@ -84,7 +84,7 @@ The following inputs are required:
 |---|---|
 | module_name   | Your Magento module name. Example: Foo_Bar   |
 | composer_name   | Your composer name. Example: foo/magento2-bar   |
-| ce_version  | Magento 2 Open Source version number. Example: 2.4.0  |
+| ce_version  | Magento 2 Open Source version number. Example: 2.4.2  |
 
 
 
@@ -103,7 +103,7 @@ If this phpunit file does not work for you can provide a relative path to your o
         with:
           module_name: Foo_Bar
           composer_name: foo/magento2-foobar
-          ce_version: '2.4.0'
+          ce_version: '2.4.2'
           phpunit_file: './path/to/phpunit.xml'
 ```
 
@@ -115,7 +115,7 @@ Sometimes it may be needed to run additional commands before tests can run. For 
         with:
           module_name: Foo_Bar
           composer_name: foo/magento2-foobar
-          ce_version: '2.4.0'
+          ce_version: '2.4.2'
           magento_pre_install_script: './.github/integration-test-setup.sh'
 ```
 
@@ -131,7 +131,7 @@ In your GitHub repository add the below as
 `.github/workflows/mess-detector.yml`
 
 ```
-name: ExtDN M2 Mess Detector
+name: Bavaan M2 Mess Detector
 on: [push, pull_request]
 
 jobs:
@@ -156,7 +156,7 @@ In your GitHub repository add the below as
 `.github/workflows/phpstan.yml`
 
 ```
-name: ExtDN M2 PHPStan
+name: Bavaan M2 PHPStan
 on: [push, pull_request]
 
 jobs:
@@ -178,7 +178,7 @@ In your GitHub repository add the below as
 `.github/workflows/performance.yml`
 
 ```
-name: ExtDN M2 Performance Testing
+name: Bavaan M2 Performance Testing
 on: [push, pull_request]
 
 jobs:
@@ -208,7 +208,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Prepare ExtDN performance testing
+      - name: Prepare Bavaan performance testing
         uses: bavaan/github-actions-m2/magento-performance-setup@master
         env:
           BLACKFIRE_CLIENT_ID: ${{ secrets.BLACKFIRE_CLIENT_ID }}

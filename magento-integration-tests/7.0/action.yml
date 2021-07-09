@@ -1,5 +1,5 @@
 name: 'Magento 2 integration tests'
-author: 'ExtDN'
+author: 'Bavaan'
 description: 'runs integration tests for given Magento 2 open source version'
 inputs:
   module_name:

@@ -1,5 +1,5 @@
 name: 'Performance Comparison for M2 Extensions'
-author: 'ExtDN'
+author: 'Bavaan'
 description: 'compares performance before and after installing a Magento 2 extension'
 inputs:
   github-token:

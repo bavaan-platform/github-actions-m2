@@ -1,4 +1,4 @@
-name: ExtDN Integration Tests
+name: Bavaan Integration Tests
 on: [push]
 
 jobs:
@@ -20,14 +20,17 @@ jobs:
           - 3306:3306
         options: --tmpfs /tmp:rw --tmpfs /var/lib/mysql:rw --health-cmd="mysqladmin ping"
     env:
+      REPOSITORY_URL: https://repo.magento.com/
+      MAGENTO_MARKETPLACE_USERNAME: ${{ secrets.MAGENTO_MARKETPLACE_USERNAME }}
+      MAGENTO_MARKETPLACE_PASSWORD: ${{ secrets.MAGENTO_MARKETPLACE_PASSWORD }}
       MODULE_NAME: ${{ secrets.MODULE_NAME }}
       COMPOSER_NAME: ${{ secrets.COMPOSER_NAME }}
       ELASTICSEARCH: 1
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://yireo/github-actions-magento-integration-tests:7.3
+      - uses: docker://bavaan/github-actions-magento-integration-tests:7.3
         env:
           MAGENTO_VERSION: '2.3.5'
-      - uses: docker://yireo/github-actions-magento-integration-tests:7.4
+      - uses: docker://bavaan/github-actions-magento-integration-tests:7.4
         env:
-          MAGENTO_VERSION: '2.4.0'
+          MAGENTO_VERSION: '2.4.2'

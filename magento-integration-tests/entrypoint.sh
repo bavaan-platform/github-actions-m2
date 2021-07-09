@@ -67,7 +67,7 @@ fi
 echo "Run installation"
 COMPOSER_MEMORY_LIMIT=-1 composer install --no-interaction --no-progress --no-suggest
 
-if [[ "$MAGENTO_VERSION" == "2.4.0" ]]; then
+if [[ "$MAGENTO_VERSION" == "2.4.2" ]]; then
   #Dotdigital tests don't work out of the box
   rm -rf "$MAGENTO_ROOT/vendor/dotmailer/dotmailer-magento2-extension/Test/Integration/"
 fi

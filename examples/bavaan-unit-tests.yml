@@ -1,4 +1,4 @@
-name: ExtDN Unit Tests
+name: Bavaan Unit Tests
 on: [push]
 
 jobs:
@@ -10,12 +10,12 @@ jobs:
       COMPOSER_NAME: ${{ secrets.COMPOSER_NAME }}
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://yireo/github-actions-magento-unit-tests:7.3
+      - uses: docker://bavaan/github-actions-magento-unit-tests:7.3
         env:
           MAGENTO_VERSION: '2.3.4'
-      - uses: docker://yireo/github-actions-magento-unit-tests:7.3
+      - uses: docker://bavaan/github-actions-magento-unit-tests:7.3
         env:
           MAGENTO_VERSION: '2.3.5-p2'
-      - uses: docker://yireo/github-actions-magento-unit-tests:7.4
+      - uses: docker://bavaan/github-actions-magento-unit-tests:7.4
         env:
-          MAGENTO_VERSION: '2.4.0'
+          MAGENTO_VERSION: '2.4.2'

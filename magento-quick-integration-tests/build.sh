@@ -1,4 +1,4 @@
 #!/bin/bash
-docker build -t yireo/github-actions-magento-quick-integration-tests .
-docker push yireo/github-actions-magento-quick-integration-tests
+docker build -t bavaan/github-actions-magento-quick-integration-tests .
+docker push bavaan/github-actions-magento-quick-integration-tests
 

@@ -1,5 +1,5 @@
 name: 'Install given Magento 2 version'
-author: 'ExtDN'
+author: 'Bavaan'
 description: 'performs installation of Magento 2 open source version'
 inputs:
   ce-version:

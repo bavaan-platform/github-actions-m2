@@ -1,5 +1,5 @@
 name: 'Magento 2 Mess Detector'
-author: 'ExtDN'
+author: 'Bavaan'
 description: 'performs php static code analysis with the Magento 2 Mess Detector ruleset'
 runs:
   using: 'docker'

@@ -29,7 +29,7 @@ cd local-source/
 cp -R ${GITHUB_WORKSPACE}/${MODULE_SOURCE} $MODULE_NAME
 
 echo "Removing unneeded packages"
-composer require yireo/magento2-replace-sample-data --no-update --no-interaction
+composer require bavaan/magento2-replace-sample-data --no-update --no-interaction
 
 echo "Configure extension source in composer"
 cd $MAGENTO_ROOT

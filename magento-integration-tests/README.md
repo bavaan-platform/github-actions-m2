@@ -1,7 +1,7 @@
 # Magento 2 Integration Tests
 To use this action, create a YAML file `.github/workflows/example.yml` in your extension folder, based upon the following contents:
 ```yaml
-name: ExtDN Actions
+name: Bavaan Actions
 on: [push]
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
         with:
           module_name: Foo_Bar
           composer_name: foo/magento2-foobar
-          ce_version: '2.4.0'
+          ce_version: '2.4.2'
 ```
 
 Make sure to modify the following values:

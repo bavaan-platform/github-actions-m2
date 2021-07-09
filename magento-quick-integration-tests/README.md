@@ -1,7 +1,7 @@
 # Magento 2 Integration Tests
 To use this action, create a YAML file `.github/workflows/example.yml` in your extension folder, based upon the following contents:
 ```yaml
-name: ExtDN Actions
+name: Bavaan Actions
 on: [push]
 
 jobs:
@@ -50,5 +50,5 @@ To use the `Dockerfile` of this package, a new image needs to be built and pushe
 
 For instance with the vendor and image-name used in this package:
 
-    docker build -t yireo/github-actions-magento-quick-integration-tests .
-    docker push yireo/github-actions-magento-quick-integration-tests
+    docker build -t bavaan/github-actions-magento-quick-integration-tests .
+    docker push bavaan/github-actions-magento-quick-integration-tests

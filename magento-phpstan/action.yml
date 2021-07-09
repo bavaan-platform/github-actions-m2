@@ -1,5 +1,5 @@
 name: 'Magento 2 PhpStan'
-author: 'ExtDN'
+author: 'Bavaan'
 description: 'performs php static code analysis with the Magento 2 PhpStan ruleset'
 inputs:
   composer_name:

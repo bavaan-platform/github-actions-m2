@@ -1,4 +1,4 @@
-name: ExtDN Static Tests
+name: Bavaan Static Tests
 on: [push]
 
 jobs:
