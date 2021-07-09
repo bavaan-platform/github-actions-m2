@@ -7,7 +7,7 @@ inputs:
     required: false
 runs:
   using: 'docker'
-  image: 'docker://extdn/magento-coding-standard-action:latest'
+  image: 'docker://bavaan/magento-coding-standard-action:latest'
 branding:
   icon: 'code'  
   color: 'green'

@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: extdn/github-actions-m2/magento-coding-standard@master
+      - uses: bavaan/github-actions-m2/magento-coding-standard@master
 ```
 
 ---
@@ -64,7 +64,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: M2 Integration Tests with Magento 2 (Php7.4)
-        uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
+        uses: bavaan/github-actions-m2/magento-integration-tests/7.4@master
         with:
           module_name: Foo_Bar
           composer_name: foo/magento2-foobar
@@ -75,9 +75,9 @@ The following images are provided for use
 
 |Php   | Image  |
 |---|---|
-|7.4 | extdn/github-actions-m2/magento-integration-tests/7.4@master |
-|7.3 | extdn/github-actions-m2/magento-integration-tests/7.3@master |
-|7.2 | extdn/github-actions-m2/magento-integration-tests/7.2@master |
+|7.4 | bavaan/github-actions-m2/magento-integration-tests/7.4@master |
+|7.3 | bavaan/github-actions-m2/magento-integration-tests/7.3@master |
+|7.2 | bavaan/github-actions-m2/magento-integration-tests/7.2@master |
 
 The following inputs are required:
 | with  | description  |
@@ -89,7 +89,7 @@ The following inputs are required:
 
 
 
-The default [phpunit.xml](https://github.com/extdn/github-actions-m2/blob/master/magento-integration-tests/docker-files/phpunit.xml) configuration will check the following folders for *Test files:
+The default [phpunit.xml](https://github.com/bavaan/github-actions-m2/blob/master/magento-integration-tests/docker-files/phpunit.xml) configuration will check the following folders for *Test files:
 
 - Test/Integration
 - tests/Integration
@@ -99,7 +99,7 @@ If this phpunit file does not work for you can provide a relative path to your o
 
 ``` 
       - name: M2 Integration Tests with Magento 2 (Php7.4)
-        uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
+        uses: bavaan/github-actions-m2/magento-integration-tests/7.4@master
         with:
           module_name: Foo_Bar
           composer_name: foo/magento2-foobar
@@ -111,7 +111,7 @@ Sometimes it may be needed to run additional commands before tests can run. For 
 
 ``` 
       - name: M2 Integration Tests with Magento 2 (Php7.4)
-        uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
+        uses: bavaan/github-actions-m2/magento-integration-tests/7.4@master
         with:
           module_name: Foo_Bar
           composer_name: foo/magento2-foobar
@@ -140,7 +140,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: extdn/github-actions-m2/magento-mess-detector@master
+      - uses: bavaan/github-actions-m2/magento-mess-detector@master
 ```
 
 ---
@@ -165,7 +165,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: extdn/github-actions-m2/magento-phpstan@master
+      - uses: bavaan/github-actions-m2/magento-phpstan@master
         with:
           composer_name: foo/magento2-foobar
 ```
@@ -209,7 +209,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Prepare ExtDN performance testing
-        uses: extdn/github-actions-m2/magento-performance-setup@master
+        uses: bavaan/github-actions-m2/magento-performance-setup@master
         env:
           BLACKFIRE_CLIENT_ID: ${{ secrets.BLACKFIRE_CLIENT_ID }}
           BLACKFIRE_CLIENT_TOKEN: ${{ secrets.BLACKFIRE_CLIENT_TOKEN }}
@@ -257,7 +257,7 @@ jobs:
           BLACKFIRE_SERVER_TOKEN: ${{ secrets.BLACKFIRE_SERVER_TOKEN }}
 
       - name: Compare Performance Results
-        uses: extdn/github-actions-m2/magento-performance-compare@master
+        uses: bavaan/github-actions-m2/magento-performance-compare@master
 ```
 Change these environment variables:
 ```

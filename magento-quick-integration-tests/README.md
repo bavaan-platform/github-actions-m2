@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: M2 Integration Tests with Magento 2
-        uses: extdn/github-actions-m2/magento-integration-tests@master
+        uses: bavaan/github-actions-m2/magento-integration-tests@master
         env:
             MODULE_NAME: Foo_Bar
             COMPOSER_NAME: foo/magento2-foobar
