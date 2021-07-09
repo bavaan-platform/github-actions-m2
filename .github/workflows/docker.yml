@@ -16,7 +16,6 @@ jobs:
           - "magento-coding-standard"
           - "magento-mess-detector"
           - "magento-phpstan"
-          - "magento-unit-tests"
 
     env:
       DOCKER_USERNAME: "bavaan"
