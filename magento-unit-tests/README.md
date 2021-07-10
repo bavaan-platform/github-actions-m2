@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://bavaan/github-actions-magento-unit-tests:7.3
+      - uses: docker://bavaan/magento-unit-tests:7.3
         env:
           MAGENTO_VERSION: '2.3.4'
           MODULE_NAME: Foo_Bar
@@ -30,13 +30,13 @@ jobs:
       COMPOSER_NAME: foo/magento2-foobar
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://bavaan/github-actions-magento-unit-tests:7.3
+      - uses: docker://bavaan/magento-unit-tests:7.3
         env:
           MAGENTO_VERSION: '2.3.4'
-      - uses: docker://bavaan/github-actions-magento-unit-tests:7.3
+      - uses: docker://bavaan/magento-unit-tests:7.3
         env:
           MAGENTO_VERSION: '2.3.5-p2'
-      - uses: docker://bavaan/github-actions-magento-unit-tests:7.4
+      - uses: docker://bavaan/magento-unit-tests:7.4
         env:
           MAGENTO_VERSION: '2.4.2'
 ```
@@ -47,7 +47,7 @@ Make sure to modify the following values:
 
 You could also choose to switch PHP version, by changing the tag of the Docker image:
 
-    - uses: docker://bavaan/github-actions-magento-unit-tests:7.4
+    - uses: docker://bavaan/magento-unit-tests:7.4
 
 ### Maintenance of the Docker image
 To use the `Dockerfile` of this package, a new image needs to be built and pushed to the Docker Hub:
@@ -57,7 +57,7 @@ To use the `Dockerfile` of this package, a new image needs to be built and pushe
 
 For instance with the vendor and image-name used in this package:
 
-    docker build -t bavaan/github-actions-magento-unit-tests .
-    docker push bavaan/github-actions-magento-unit-tests
+    docker build -t bavaan/magento-unit-tests .
+    docker push bavaan/magento-unit-tests
 
 The script `build-and-push.sh` is used for this purpose.

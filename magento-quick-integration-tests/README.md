@@ -50,5 +50,5 @@ To use the `Dockerfile` of this package, a new image needs to be built and pushe
 
 For instance with the vendor and image-name used in this package:
 
-    docker build -t bavaan/github-actions-magento-quick-integration-tests .
-    docker push bavaan/github-actions-magento-quick-integration-tests
+    docker build -t bavaan/magento-quick-integration-tests .
+    docker push bavaan/magento-quick-integration-tests
