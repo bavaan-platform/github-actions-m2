@@ -11,13 +11,6 @@ PROJECT_PATH=$GITHUB_WORKSPACE
 test -z "${REPOSITORY_URL}" && REPOSITORY_URL="https://repo-magento-mirror.fooman.co.nz/"
 
 echo "MySQL checks"
-for i in `seq 1 50`;
-do
-    nc -z mysql 3306 && echo Success && exit
-    echo -n .
-    sleep 1
-done
-/wait-for-it.sh mysql:3306 --timeout=60 -- echo "Mysql is up"
 nc -z -w1 mysql 3306 || (echo "MySQL is not running" && exit)
 php /docker-files/db-create-and-test.php magento2 || exit
 php /docker-files/db-create-and-test.php magento2test || exit

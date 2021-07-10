@@ -2,10 +2,12 @@
 
 set -e
 
+test -z "${MAGENTO_EDITION}" || MAGENTO_EDITION=$MAGENTO_EDITION
 test -z "${CE_VERSION}" || MAGENTO_VERSION=$CE_VERSION
 
 test -z "${MODULE_NAME}" && MODULE_NAME=$INPUT_MODULE_NAME
 test -z "${COMPOSER_NAME}" && COMPOSER_NAME=$INPUT_COMPOSER_NAME
+test -z "${MAGENTO_EDITION}" && MAGENTO_EDITION=$INPUT_MAGENTO_EDITION
 test -z "${MAGENTO_VERSION}" && MAGENTO_VERSION=$INPUT_MAGENTO_VERSION
 test -z "${ELASTICSEARCH}" && ELASTICSEARCH=$INPUT_ELASTICSEARCH
 test -z "${PHPUNIT_FILE}" && PHPUNIT_FILE=$INPUT_PHPUNIT_FILE
@@ -16,6 +18,7 @@ fi
 
 test -z "${MODULE_NAME}" && (echo "'module_name' is not set in your GitHub Actions YAML file")
 test -z "${COMPOSER_NAME}" && (echo "'composer_name' is not set in your GitHub Actions YAML file" && exit 1)
+test -z "${MAGENTO_EDITION}" && (echo "'magento_edition' is not set in your GitHub Actions YAML file" && exit 1)
 test -z "${MAGENTO_VERSION}" && (echo "'ce_version' is not set in your GitHub Actions YAML file" && exit 1)
 
 MAGENTO_ROOT=/tmp/m2
@@ -29,7 +32,6 @@ if [[ ! -z "$INPUT_PRE_PROJECT_SCRIPT" && -f "${GITHUB_WORKSPACE}/$INPUT_PRE_PRO
 fi
 
 echo "MySQL checks"
-/wait-for-it.sh mysql:3306 --timeout=60 -- echo "Mysql is up"
 nc -z -w1 mysql 3306 || (echo "MySQL is not running" && exit)
 php /docker-files/db-create-and-test.php magento2 || exit
 php /docker-files/db-create-and-test.php magento2test || exit
@@ -37,8 +39,11 @@ php /docker-files/db-create-and-test.php magento2test || exit
 echo "Setup Magento credentials"
 test -z "${MAGENTO_MARKETPLACE_USERNAME}" || composer global config http-basic.repo.magento.com $MAGENTO_MARKETPLACE_USERNAME $MAGENTO_MARKETPLACE_PASSWORD
 
-echo "Prepare composer installation for $MAGENTO_VERSION"
-composer create-project --repository=$REPOSITORY_URL --no-install --no-progress --no-plugins magento/project-community-edition $MAGENTO_ROOT "$MAGENTO_VERSION"
+if [[ ! -z "$MAGENTO_EDITION" ]] ; then
+    MAGENTO_EDITION="community"
+fi
+echo "Prepare composer installation for $MAGENTO_EDITION edition version $MAGENTO_VERSION"
+composer create-project --repository=$REPOSITORY_URL --no-install --no-progress --no-plugins "magento/project-${MAGENTO_EDITION}-edition" $MAGENTO_ROOT "$MAGENTO_VERSION"
 
 echo "Setup extension source folder within Magento root"
 cd $MAGENTO_ROOT

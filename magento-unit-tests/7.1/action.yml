@@ -11,7 +11,11 @@ inputs:
   php_version:
     description: 'PHP version'
     required: true
-    default: '7.4'
+    default: '7.1'
+  edition:
+    description: 'Magento 2 Edition'
+    required: true
+    default: 'community'
   ce_version:
     description: 'Magento 2 Open Source version number'
     required: true
@@ -28,6 +32,7 @@ runs:
   env:
     MODULE_NAME: ${{ inputs.module_name }}
     COMPOSER_NAME: ${{ inputs.composer_name }}
+    MAGENTO_EDITION: ${{ inputs.magento_edition }}
     MAGENTO_VERSION: ${{ inputs.ce_version }}
     COMPOSER_MEMORY_LIMIT: -1
 branding:

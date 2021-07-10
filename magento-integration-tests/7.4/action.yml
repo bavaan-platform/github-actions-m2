@@ -8,8 +8,12 @@ inputs:
   composer_name:
     description: 'Your composer name. Example: foo/magento2-bar'
     required: true
+  edition:
+    description: 'Magento 2 Edition'
+    required: true
+    default: 'community'
   ce_version:
-    description: 'Magento 2 Open Source version number'
+    description: 'Magento 2 version number'
     required: true
     default: '2.4.2'
   module_source:
@@ -36,6 +40,7 @@ runs:
   env:
     MODULE_NAME: ${{ inputs.module_name }}
     COMPOSER_NAME: ${{ inputs.composer_name }}
+    MAGENTO_EDITION: ${{ inputs.magento_edition }}
     MAGENTO_VERSION: ${{ inputs.ce_version }}
     COMPOSER_MEMORY_LIMIT: -1
 

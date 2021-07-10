@@ -2,14 +2,17 @@
 
 set -e
 
+test -z "${MAGENTO_EDITION}" || MAGENTO_EDITION=$MAGENTO_EDITION
 test -z "${CE_VERSION}" || MAGENTO_VERSION=$CE_VERSION
 
 test -z "${MODULE_NAME}" && MODULE_NAME=$INPUT_MODULE_NAME
 test -z "${COMPOSER_NAME}" && COMPOSER_NAME=$INPUT_COMPOSER_NAME
+test -z "${MAGENTO_EDITION}" && MAGENTO_EDITION=$INPUT_MAGENTO_EDITION
 test -z "${MAGENTO_VERSION}" && MAGENTO_VERSION=$INPUT_MAGENTO_VERSION
 
 test -z "${MODULE_NAME}" && (echo "'module_name' is not set" && exit 1)
 test -z "${COMPOSER_NAME}" && (echo "'composer_name' is not set" && exit 1)
+test -z "${MAGENTO_EDITION}" && (echo "'magento_edition' is not set" && exit 1)
 test -z "${MAGENTO_VERSION}" && (echo "'magento_version' is not set" && exit 1)
 
 MAGENTO_ROOT=/tmp/m2
@@ -19,8 +22,11 @@ test -z "${REPOSITORY_URL}" && REPOSITORY_URL="https://repo-magento-mirror.fooma
 echo "Setup Magento credentials"
 test -z "${MAGENTO_MARKETPLACE_USERNAME}" || composer global config http-basic.repo.magento.com $MAGENTO_MARKETPLACE_USERNAME $MAGENTO_MARKETPLACE_PASSWORD
 
-echo "Prepare composer installation"
-composer create-project --repository=$REPOSITORY_URL magento/project-community-edition:${MAGENTO_VERSION} $MAGENTO_ROOT --no-install --no-interaction --no-progress
+if [[ ! -z "$MAGENTO_EDITION" ]] ; then
+    MAGENTO_EDITION="community"
+fi
+echo "Prepare composer installation for $MAGENTO_EDITION edition version $MAGENTO_VERSION"
+composer create-project --repository=$REPOSITORY_URL --no-install --no-progress --no-plugins "magento/project-${MAGENTO_EDITION}-edition" $MAGENTO_ROOT "$MAGENTO_VERSION"
 
 echo "Setup extension source folder within Magento root"
 cd $MAGENTO_ROOT
