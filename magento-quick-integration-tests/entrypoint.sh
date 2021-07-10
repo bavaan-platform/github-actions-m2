@@ -17,6 +17,7 @@ do
     echo -n .
     sleep 1
 done
+/wait-for-it.sh mysql:3306 --timeout=60 -- echo "Mysql is up"
 nc -z -w1 mysql 3306 || (echo "MySQL is not running" && exit)
 php /docker-files/db-create-and-test.php magento2 || exit
 php /docker-files/db-create-and-test.php magento2test || exit

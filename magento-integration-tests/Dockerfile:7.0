@@ -34,6 +34,9 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install sockets
 RUN composer global require hirak/prestissimo
 
+COPY wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 
