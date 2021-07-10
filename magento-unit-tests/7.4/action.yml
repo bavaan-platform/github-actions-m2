@@ -24,7 +24,7 @@ inputs:
     description: 'Relative path to an optional script before Magento installation is run. Leave empty to use the default.'
 runs:
   using: 'docker'
-  image: 'docker://bavaan/magento-unit-tests:7.4-latest'
+  image: 'docker://bavaan/magento-unit-tests-action:7.4-latest'
   env:
     MODULE_NAME: ${{ inputs.module_name }}
     COMPOSER_NAME: ${{ inputs.composer_name }}

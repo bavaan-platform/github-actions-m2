@@ -20,7 +20,7 @@ inputs:
     description: 'Relative path to an optional script before Magento installation is run. Leave empty to use the default.'
 runs:
   using: 'docker'
-  image: 'docker://bavaan/magento-quick-integration-tests:latest'
+  image: 'docker://bavaan/magento-quick-integration-tests-action:latest'
 branding:
   icon: 'code'  
   color: 'green'
