@@ -113,7 +113,6 @@ php bin/magento config:set cms/wysiwyg/enabled disabled
 
 echo "Run the functional tests"
 cd $MAGENTO_ROOT
-vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.test/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234
-vendor/bin/mftf setup:env --SELENIUM_HOST=selenium
+vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.test/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234 --SELENIUM_HOST=selenium
 vendor/bin/mftf doctor
 vendor/bin/mftf run:test AdminLoginSuccessfulTest --remove
