@@ -110,6 +110,7 @@ php bin/magento config:set general/locale/timezone America/Los_Angeles
 php bin/magento config:set admin/security/admin_account_sharing 1
 php bin/magento config:set admin/security/use_form_key 0
 php bin/magento config:set cms/wysiwyg/enabled disabled
+echo "127.0.0.1 magento2.test" >> /etc/hosts
 
 echo "Run the functional tests"
 cd $MAGENTO_ROOT
