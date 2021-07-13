@@ -110,6 +110,8 @@ php bin/magento config:set general/locale/timezone America/Los_Angeles
 php bin/magento config:set admin/security/admin_account_sharing 1
 php bin/magento config:set admin/security/use_form_key 0
 php bin/magento config:set cms/wysiwyg/enabled disabled
+php bin/magento module:disable Magento_TwoFactorAuth
+php bin/magento cache:flush 
 
 echo "Start Magento Server"
 cd $MAGENTO_ROOT
