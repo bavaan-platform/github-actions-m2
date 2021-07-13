@@ -35,7 +35,8 @@ RUN docker-php-ext-install sockets
 RUN composer global require hirak/prestissimo
 
 #Install Nodejs
-RUN apt-get install -y gnupg \
+RUN apt-get update \
+  && apt-get install -y gnupg \
   && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs
 
