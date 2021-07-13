@@ -106,6 +106,7 @@ fi
 
 echo "Prepare for functional tests"
 cd $MAGENTO_ROOT
+echo "SELENIUM_HOST=selenium" >> dev/tests/acceptance/.env
 php bin/magento config:set general/locale/timezone America/Los_Angeles
 php bin/magento config:set admin/security/admin_account_sharing 1
 php bin/magento config:set admin/security/use_form_key 0
