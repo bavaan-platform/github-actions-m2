@@ -79,7 +79,7 @@ if [[ "$MAGENTO_VERSION" == "2.4.2" ]]; then
 fi
 
 echo "Gathering specific Magento setup options"
-SETUP_ARGS="--base-url=http://magento2.test/ \
+SETUP_ARGS="--base-url=http://magento2.localhost/ \
 --db-host=mysql --db-name=magento2 \
 --db-user=root --db-password=root \
 --admin-firstname=John --admin-lastname=Doe \
@@ -110,10 +110,9 @@ php bin/magento config:set general/locale/timezone America/Los_Angeles
 php bin/magento config:set admin/security/admin_account_sharing 1
 php bin/magento config:set admin/security/use_form_key 0
 php bin/magento config:set cms/wysiwyg/enabled disabled
-echo "127.0.0.1 magento2.test" >> /etc/hosts
 
 echo "Run the functional tests"
 cd $MAGENTO_ROOT
-vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.test/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234
+vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.localhost/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234
 vendor/bin/mftf doctor
 vendor/bin/mftf run:test AdminLoginSuccessfulTest --remove
