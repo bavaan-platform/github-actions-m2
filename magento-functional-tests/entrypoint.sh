@@ -111,6 +111,10 @@ php bin/magento config:set admin/security/admin_account_sharing 1
 php bin/magento config:set admin/security/use_form_key 0
 php bin/magento config:set cms/wysiwyg/enabled disabled
 
+echo "Start Magento Server"
+cd $MAGENTO_ROOT
+php -S 127.0.0.1:80 -t ./pub/ ./phpserver/router.php &
+
 echo "Run the functional tests"
 cd $MAGENTO_ROOT
 vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.localhost/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234
