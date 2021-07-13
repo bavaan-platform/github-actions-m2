@@ -32,7 +32,7 @@ if [[ ! -z "$INPUT_PRE_PROJECT_SCRIPT" && -f "${GITHUB_WORKSPACE}/$INPUT_PRE_PRO
 fi
 
 echo "Selenium checks"
-nc -z -w1 selenium 4444 || (echo "Selenium is not running" && exit)
+nc -z -w1 127.0.0.1 4444 || (echo "Selenium is not running" && exit)
 
 echo "MySQL checks"
 nc -z -w1 mysql 3306 || (echo "MySQL is not running" && exit)
