@@ -43,7 +43,7 @@ echo "Setup Magento credentials"
 test -z "${MAGENTO_MARKETPLACE_USERNAME}" || composer global config http-basic.repo.magento.com $MAGENTO_MARKETPLACE_USERNAME $MAGENTO_MARKETPLACE_PASSWORD
 
 if [[ ! -z "$MAGENTO_EDITION" ]] ; then
-    MAGENTO_EDITION="enterprise"
+    MAGENTO_EDITION="community"
 fi
 echo "Prepare composer installation for $MAGENTO_EDITION edition version $MAGENTO_VERSION"
 composer create-project --repository=$REPOSITORY_URL --no-install --no-progress --no-plugins "magento/project-${MAGENTO_EDITION}-edition" $MAGENTO_ROOT "$MAGENTO_VERSION"
