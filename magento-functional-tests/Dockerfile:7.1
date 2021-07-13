@@ -46,7 +46,6 @@ RUN cd /opt \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
-        libnss libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev \
     && curl \
         -L \
         -o openjdk.tar.gz \
@@ -68,6 +67,9 @@ RUN chmod 755 /entrypoint.sh
 
 COPY docker-files /docker-files
 RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
+
+#Cleanup
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/*
 
 ENTRYPOINT ["bash", "/entrypoint.sh"]
 
