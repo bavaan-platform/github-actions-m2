@@ -116,6 +116,9 @@ php bin/magento config:set cms/wysiwyg/enabled disabled
 php bin/magento module:disable Magento_TwoFactorAuth
 php bin/magento cache:flush 
 
+echo "Start Selenium Server"
+selenium-standalone start &
+
 echo "Start Magento Server"
 cd $MAGENTO_ROOT
 php -S 127.0.0.1:80 -t ./pub/ ./phpserver/router.php &
