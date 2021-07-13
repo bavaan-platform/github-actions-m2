@@ -46,6 +46,7 @@ RUN cd /opt \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        libnss libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev \
     && curl \
         -L \
         -o openjdk.tar.gz \

@@ -31,9 +31,6 @@ if [[ ! -z "$INPUT_PRE_PROJECT_SCRIPT" && -f "${GITHUB_WORKSPACE}/$INPUT_PRE_PRO
     . ${GITHUB_WORKSPACE}/$INPUT_PRE_PROJECT_SCRIPT
 fi
 
-echo "Selenium checks"
-nc -z -w1 127.0.0.1 4444 || (echo "Selenium is not running" && exit)
-
 echo "MySQL checks"
 nc -z -w1 mysql 3306 || (echo "MySQL is not running" && exit)
 php /docker-files/db-create-and-test.php magento2 || exit
@@ -118,6 +115,8 @@ php bin/magento cache:flush
 
 echo "Start Selenium Server"
 selenium-standalone start &
+echo "Selenium checks"
+nc -z -w1 127.0.0.1 4444 || (echo "Selenium is not running" && exit)
 
 echo "Start Magento Server"
 cd $MAGENTO_ROOT
