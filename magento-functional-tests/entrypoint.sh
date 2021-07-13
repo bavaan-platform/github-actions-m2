@@ -31,6 +31,9 @@ if [[ ! -z "$INPUT_PRE_PROJECT_SCRIPT" && -f "${GITHUB_WORKSPACE}/$INPUT_PRE_PRO
     . ${GITHUB_WORKSPACE}/$INPUT_PRE_PROJECT_SCRIPT
 fi
 
+echo "Selenium checks"
+nc -z -w1 selenium 4444 || (echo "Selenium is not running" && exit)
+
 echo "MySQL checks"
 nc -z -w1 mysql 3306 || (echo "MySQL is not running" && exit)
 php /docker-files/db-create-and-test.php magento2 || exit
@@ -40,7 +43,7 @@ echo "Setup Magento credentials"
 test -z "${MAGENTO_MARKETPLACE_USERNAME}" || composer global config http-basic.repo.magento.com $MAGENTO_MARKETPLACE_USERNAME $MAGENTO_MARKETPLACE_PASSWORD
 
 if [[ ! -z "$MAGENTO_EDITION" ]] ; then
-    MAGENTO_EDITION="community"
+    MAGENTO_EDITION="enterprise"
 fi
 echo "Prepare composer installation for $MAGENTO_EDITION edition version $MAGENTO_VERSION"
 composer create-project --repository=$REPOSITORY_URL --no-install --no-progress --no-plugins "magento/project-${MAGENTO_EDITION}-edition" $MAGENTO_ROOT "$MAGENTO_VERSION"
@@ -106,7 +109,6 @@ fi
 
 echo "Prepare for functional tests"
 cd $MAGENTO_ROOT
-echo "SELENIUM_HOST=selenium" >> dev/tests/acceptance/.env
 php bin/magento config:set general/locale/timezone America/Los_Angeles
 php bin/magento config:set admin/security/admin_account_sharing 1
 php bin/magento config:set admin/security/use_form_key 0
@@ -121,5 +123,7 @@ php -S 127.0.0.1:80 -t ./pub/ ./phpserver/router.php &
 echo "Run the functional tests"
 cd $MAGENTO_ROOT
 vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.localhost/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234
+cat dev/tests/acceptance/.env
+echo "SELENIUM_HOST=selenium" >> dev/tests/acceptance/.env
 vendor/bin/mftf doctor
 vendor/bin/mftf run:test AdminLoginSuccessfulTest --remove
