@@ -34,6 +34,32 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install sockets
 RUN composer global require hirak/prestissimo
 
+#Install Nodejs
+RUN apt-get install -y gnupg \
+  && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+  && apt-get install -y nodejs
+
+#Build Selenimum
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+    && curl \
+        -L \
+        -o openjdk.tar.gz \
+        https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz \
+    && mkdir jdk \
+    && tar zxf openjdk.tar.gz -C jdk --strip-components=1 \
+    && rm -rf openjdk.tar.gz \
+    && ln -sf /opt/jdk/bin/* /usr/local/bin/ \
+    && java  --version \
+    && javac --version \
+    && jlink --version
+    
+RUN apt-get -y install -f && \
+  apt-get -y install unzip
+RUN npm install selenium-standalone -g && selenium-standalone install
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 

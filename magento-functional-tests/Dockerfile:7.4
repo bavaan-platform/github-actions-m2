@@ -66,6 +66,6 @@ RUN chmod 755 /entrypoint.sh
 COPY docker-files /docker-files
 RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
 
-CMD ["selenium-standalone start"]
+CMD ["selenium-standalone","start"]
 ENTRYPOINT ["bash", "/entrypoint.sh"]
 
