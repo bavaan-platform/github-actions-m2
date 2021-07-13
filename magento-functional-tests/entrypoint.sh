@@ -123,9 +123,5 @@ php -S 127.0.0.1:80 -t ./pub/ ./phpserver/router.php &
 echo "Run the functional tests"
 cd $MAGENTO_ROOT
 vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.localhost/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234
-echo "SELENIUM_HOST=$SELENIUM_HOST" >> dev/tests/acceptance/.env
-echo "SELENIUM_PORT=$SELENIUM_PORT" >> dev/tests/acceptance/.env
-curl http://$SELENIUM_HOST:$SELENIUM_PORT/wd/hub
-cat dev/tests/acceptance/.env
 vendor/bin/mftf doctor
 vendor/bin/mftf run:test AdminLoginSuccessfulTest --remove
