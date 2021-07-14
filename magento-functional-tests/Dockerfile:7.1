@@ -62,7 +62,7 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 
 RUN apt-get -y install -f && \
   apt-get -y install unzip
-RUN npm install selenium-standalone -g && selenium-standalone install --singleDriverInstall=chrome
+RUN npm install selenium-standalone -g && selenium-standalone install
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
