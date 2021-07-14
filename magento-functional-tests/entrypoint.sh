@@ -114,9 +114,10 @@ php bin/magento module:disable Magento_TwoFactorAuth
 php bin/magento cache:flush 
 
 echo "Start Selenium Server"
-selenium-standalone start -- -debug --drivers.chrome.whitelisted-ips='' --verbose --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --allow-running-insecure-content --ignore-certificate-errors --allow-insecure-localhost --disable-gpu  --window-size='1400,2100' &
+selenium-standalone start --drivers.chrome.whitelisted-ips='' --verbose --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --allow-running-insecure-content --ignore-certificate-errors --allow-insecure-localhost --disable-gpu  --window-size='1400,2100' &
 echo "Selenium checks"
 nc -z -w1 127.0.0.1 4444 || (echo "Selenium is not running" && exit)
+curl http://127.0.0.1:4444/wd/hub
 
 echo "Start Magento Server"
 cd $MAGENTO_ROOT
