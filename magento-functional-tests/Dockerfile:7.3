@@ -19,8 +19,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     libxml2-dev \
     libxslt-dev \
     netcat \
-    procps \
-    && rm -rf /var/lib/apt/lists/*
+    procps
 
 RUN docker-php-ext-install pdo pdo_mysql
 RUN docker-php-ext-install xsl
@@ -71,4 +70,3 @@ RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.in
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/*
 
 ENTRYPOINT ["bash", "/entrypoint.sh"]
-
