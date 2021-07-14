@@ -35,17 +35,16 @@ RUN docker-php-ext-install intl
 RUN docker-php-ext-install sockets
 
 #Install Nodejs
-RUN apt-get update \
-  && apt-get install -y gnupg \
+RUN apt-get install -y gnupg \
   && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs
 
 #Build Selenimum
 RUN cd /opt \
-    && apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        libnss3-dev \
     && curl \
         -L \
         -o openjdk.tar.gz \
