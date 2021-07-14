@@ -114,10 +114,9 @@ php bin/magento module:disable Magento_TwoFactorAuth
 php bin/magento cache:flush 
 
 echo "Start Selenium Server"
-selenium-standalone start --drivers.chrome.whitelisted-ips='' --verbose --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --allow-running-insecure-content --ignore-certificate-errors --allow-insecure-localhost --disable-gpu  --window-size='1400,2100' &
+selenium-standalone start --verbose --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --allow-running-insecure-content --ignore-certificate-errors --allow-insecure-localhost --disable-gpu &
 echo "Selenium checks"
 nc -z -w1 127.0.0.1 4444 || (echo "Selenium is not running" && exit)
-curl http://127.0.0.1:4444/wd/hub
 
 echo "Start Magento Server"
 cd $MAGENTO_ROOT
@@ -125,6 +124,7 @@ php -S 127.0.0.1:80 -t ./pub/ ./phpserver/router.php &
 
 echo "Run the functional tests"
 cd $MAGENTO_ROOT
+curl http://127.0.0.1:4444/wd/hub
 vendor/bin/mftf build:project --MAGENTO_BASE_URL=http://magento2.localhost/ --MAGENTO_BACKEND_NAME=admin --MAGENTO_ADMIN_USERNAME=johndoe --MAGENTO_ADMIN_PASSWORD=johndoe!1234
 curl http://127.0.0.1:4444/wd/hub
 vendor/bin/mftf doctor
